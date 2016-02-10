@@ -3,7 +3,8 @@
 
     angular.module('app', [
         // Core modules
-         'app.core'
+        'app.core',
+        'app.inspector'
     ]);
 
 })();

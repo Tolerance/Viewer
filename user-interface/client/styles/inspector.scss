@@ -1,0 +1,81 @@
+.inspector-toolbar {
+    md-input-container {
+        &.md-input-focused, &.md-input-has-value {
+            label {
+                color: white;
+                font-size: 1em;
+            }
+        }
+
+        label {
+            padding-left: 10px !important;
+            line-height: 18px;
+            font-size: 0.8em;
+        }
+
+        input {
+            background: #fff;
+            height: 36px;
+            border-bottom: none;
+            font-size: 0.8em;
+            min-width: 250px;
+            padding-left: 10px;
+            border-radius: 5px;
+        }
+        
+        .md-errors-spacer {
+            display: none;
+        }
+    }
+
+    button.toggle-button {
+        min-width: 40px;
+        margin-left: 10px;
+
+        &.active {
+            background: rgba(1, 1, 1, 0.5);
+        }
+    }
+}
+
+div.inspector-container {
+    position: fixed;
+    top: 128px;
+    left: 220px;
+    right: 0;
+    bottom: 0;
+
+    div.placeholder {
+        text-align: center;
+        vertical-align: bottom;
+        margin-top: 100px;
+    }
+
+    div.inspector {
+        flex: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-content: space-around;
+        height: 100%;
+        background: #EFEFEF;
+
+        > div {
+            box-sizing: border-box;
+            flex: 1;
+            min-width: 30px;
+
+            &.resizable {
+                flex: 0 0 300px;
+            }
+
+            &:first-child {
+                flex-basis: 50%;
+            }
+
+            &.list {
+                overflow: auto;
+            }
+        }
+    }
+}

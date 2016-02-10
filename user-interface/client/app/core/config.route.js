@@ -13,6 +13,11 @@
                 templateUrl: 'app/dashboard/dashboard.html'
             });
 
+            $stateProvider.state('inspector', {
+                url: '/inspector',
+                templateUrl: 'app/inspector/views/inspector.html'
+            });
+
         }]
     );
 

@@ -8,6 +8,7 @@
     "angular-bootstrap": "~1.1.2",
     "angular-material": "1.0.4",
     "angular-messages": "~1.4.0",
+    "angular-resizable": "~1.2.0",
     "angular-route": "~1.4.0",
     "angular-scroll": "~1.0.0",
     "angular-translate": "~2.9.0",

@@ -1,0 +1,53 @@
+<md-toolbar>
+    <div class="md-toolbar-tools inspector-toolbar">
+        <md-input-container>
+            <input ng-model="user.title" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
+        </md-input-container>
+        <md-button class="md-raised">Inspect</md-button>
+
+        <span flex></span>
+
+        <md-button class="toggle-button active">
+            <md-icon class="zmdi zmdi-grain"></md-icon>
+            <md-tooltip>Graph</md-tooltip>
+        </md-button>
+        <md-button class="toggle-button active">
+            <md-icon class="zmdi zmdi-view-list"></md-icon>
+            <md-tooltip>List</md-tooltip>
+        </md-button>
+    </div>
+</md-toolbar>
+
+
+<div class="inspector-container">
+    <div class="placeholder">
+        Type a message identifier first.
+    </div>
+    <div class="inspector" style="display: none">
+        <div class="graph" resizable r-directions="['right']" r-flex="true">
+            GRAPH
+        </div>
+        <div class="list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>DateTime</th>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/01/2016 17:44:14</td>
+                        <td>Service 1</td>
+                        <td>github.com</td>
+                        <td>HTTP</td>
+                        <td>200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
