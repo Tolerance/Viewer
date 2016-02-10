@@ -1,0 +1,47 @@
+<header class="top-header clearfix">
+    <div ui-preloader></div>
+
+    <!-- Logo -->
+    <div class="logo bg-success">
+        <a href="#/">
+            <span class="logo-icon zmdi zmdi-eye"></span>
+            <span class="logo-text">Tolerance</span>
+        </a>
+    </div>
+
+    <!-- needs to be put after logo to make it work -->
+    <div class="menu-button" toggle-off-canvas>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </div>
+
+    <div class="top-nav">
+        <ul class="nav-left list-unstyled">
+            <li>
+                <a href="#/" data-toggle-nav-collapsed-min
+                   md-button aria-label="toggle-nav-collapsed-min"
+                   class="toggle-min"><i class="zmdi zmdi-menu"></i></a>
+            </li>
+        </ul>
+
+        <ul class="nav-right pull-right list-unstyled">
+            <li class="dropdown hidden-xs open" uib-dropdown is-open="status.isopenPalette">
+                <a class="dropdown-toggle md-button md-ink-ripple" href="#" uib-dropdown-toggle md-button>
+                    <i class="zmdi zmdi-calendar"></i> A month ago to few seconds ago
+
+                    <div class="md-ripple-container"></div>
+                </a>
+                <div class="uib-dropdown-menu with-arrow pull-right panel panel-default skin-options dropdown-menu-scaleIn dropdown-menu date-picker-dropdown" ui-not-close-on-click="">
+                    <div class="panel-heading">Select time range</div>
+                    <div class="panel-body">
+                        <div rg-range-picker="myDatetimeRange" labels="myDatetimeLabels"></div>
+                        <md-button class="md-raised btn-w-md md-primary">Change</md-button>
+                        <md-button class="btn-w-md md-warn pull-right">Cancel</md-button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</header>

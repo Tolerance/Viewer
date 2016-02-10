@@ -1,0 +1,26 @@
+
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default card">
+                <div class="panel-heading">Service 1</div>
+                <div class="row">
+                    <div class="col-md-6 box-stats">
+                        <span class="box-desc">Incoming</span>
+                        <p class="box-num">4,268</span></p>
+                        <div data-echarts data-options="smline1.options" class="sm-charts" style="height: 50px; width:100px;"></div>
+                    </div>
+                    <div class="col-md-6 box-stats no-border">
+                        <span class="box-desc">Outgoing</span>
+                        <p class="box-num">1,093</span></p>
+                        <div data-echarts data-options="smline2.options" class="sm-charts" style="height: 50px; width:100px;"></div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#">Inspect messages</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
