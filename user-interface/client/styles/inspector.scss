@@ -49,6 +49,10 @@ div.inspector-container {
         text-align: center;
         vertical-align: bottom;
         margin-top: 100px;
+
+        md-progress-circular {
+            margin: auto;
+        }
     }
 
     div.inspector {
