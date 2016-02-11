@@ -26,22 +26,21 @@
         </ul>
 
         <ul class="nav-right pull-right list-unstyled">
-            <li class="dropdown hidden-xs open" uib-dropdown is-open="status.isopenPalette">
+            <li class="dropdown hidden-xs open" uib-dropdown is-open="status.isDateTimeOpen">
                 <a class="dropdown-toggle md-button md-ink-ripple" href="#" uib-dropdown-toggle md-button>
-                    <i class="zmdi zmdi-calendar"></i> A month ago to few seconds ago
+                    <i class="zmdi zmdi-calendar"></i> {{ dateTime.from | timeAgo }} to {{ dateTime.to | timeAgo }}
 
                     <div class="md-ripple-container"></div>
                 </a>
                 <div class="uib-dropdown-menu with-arrow pull-right panel panel-default skin-options dropdown-menu-scaleIn dropdown-menu date-picker-dropdown" ui-not-close-on-click="">
                     <div class="panel-heading">Select time range</div>
                     <div class="panel-body">
-                        <div rg-range-picker="myDatetimeRange" labels="myDatetimeLabels"></div>
-                        <md-button class="md-raised btn-w-md md-primary">Change</md-button>
-                        <md-button class="btn-w-md md-warn pull-right">Cancel</md-button>
+                        <div rg-range-picker="pickedDatetimeRange" labels="{date: {from: 'Start date', to: 'End date'}}"></div>
+                        <md-button class="md-raised btn-w-md md-primary" ng-click="changeDateTime(); status.isDateTimeOpen = false">Change</md-button>
+                        <md-button class="btn-w-md md-warn pull-right" ng-click="status.isDateTimeOpen = false;">Cancel</md-button>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
-
 </header>

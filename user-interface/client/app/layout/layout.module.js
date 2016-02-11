@@ -3,7 +3,8 @@
 
     angular.module('app.layout', [
         'rgkevin.datetimeRangePicker',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'yaru22.angular-timeago'
     ]);
 
 })();

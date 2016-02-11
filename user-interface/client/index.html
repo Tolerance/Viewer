@@ -43,9 +43,7 @@
 
         <div id="loader-container"></div>
 
-        <header data-ng-include=" 'app/layout/header.html' "
-                 id="header"
-                 class="header-container header-fixed bg-white"></header>
+        <header ui-view="header" id="header" class="header-container header-fixed bg-white"></header>
 
         <div class="main-container">
             <aside data-ng-include=" 'app/layout/sidebar.html' "
@@ -71,7 +69,6 @@
         <script src="bower_components/angular-touch/angular-touch.min.js"></script>
         <!-- endbuild -->
 
-
         <!-- build:js scripts/ui.js -->
         <script src="bower_components/angular-material/angular-material.min.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
@@ -81,6 +78,8 @@
         <script src="bower_components/venturocket-angular-slider/build/angular-slider.min.js"></script>
         <script src="bower_components/datetimeRangePicker/range-picker.js"></script>
         <script src="bower_components/angular-resizable/angular-resizable.min.js"></script>
+        <script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
+        <script src="bower_components/angular-timeago/dist/angular-timeago.min.js"></script>
         <script src="vendors/echarts.js"></script>
         <script src="vendors/ngecharts.js"></script>
         <!-- endbuild -->
@@ -94,11 +93,13 @@
         <script src="app/core/app.controller.js"></script>
         <script src="app/core/config.route.js"></script>
         <script src="app/dashboard/dashboard.controller.js"></script>
+        <script src="app/layout/controllers/header.js"></script>
         <script src="app/layout/layout.directive.js"></script>
         <script src="app/layout/loader.js"></script>
         <script src="app/layout/sidebar.directive.js"></script>
-        <script src="app/inspector/controllers/inspector.js"></script>
         <script src="app/inspector/module.js"></script>
+        <script src="app/inspector/controllers/inspector.js"></script>
+        <script src="app/inspector/directives/graph.js"></script>
         <!-- endinject -->
         <!-- build:js scripts/app.js -->
     </body>

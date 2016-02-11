@@ -1,33 +1,32 @@
 <md-toolbar>
     <div class="md-toolbar-tools inspector-toolbar">
         <md-input-container>
-            <input ng-model="user.title" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
+            <input ng-model="query.request_id" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
         </md-input-container>
-        <md-button class="md-raised">Inspect</md-button>
+        <md-button class="md-raised" ng-click="inspect(query)" ng-disable="!query.request_id">Inspect</md-button>
 
         <span flex></span>
 
-        <md-button class="toggle-button active">
+        <md-button class="toggle-button" ng-class="{'active': display.graph}" ng-click="toggle('graph')">
             <md-icon class="zmdi zmdi-grain"></md-icon>
             <md-tooltip>Graph</md-tooltip>
         </md-button>
-        <md-button class="toggle-button active">
+        <md-button class="toggle-button" ng-class="{'active': display.table}" ng-click="toggle('table')">
             <md-icon class="zmdi zmdi-view-list"></md-icon>
             <md-tooltip>List</md-tooltip>
         </md-button>
     </div>
 </md-toolbar>
 
-
 <div class="inspector-container">
-    <div class="placeholder">
+    <div class="placeholder" ng-show="display.missingIdentifier">
         Type a message identifier first.
     </div>
-    <div class="inspector" style="display: none">
-        <div class="graph" resizable r-directions="['right']" r-flex="true">
-            GRAPH
+    <div class="inspector" ng-show="display.inspector">
+        <div class="graph" resizable r-directions="['right']" r-flex="true" ng-show="display.graph">
+            <graph></graph>
         </div>
-        <div class="list">
+        <div class="list" ng-show="display.table">
             <table class="table">
                 <thead>
                     <tr>

@@ -76,6 +76,14 @@ div.inspector-container {
             &.list {
                 overflow: auto;
             }
+
+            &.graph {
+                graph {
+                    width: 100%;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
         }
     }
 }
