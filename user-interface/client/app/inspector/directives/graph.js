@@ -1,11 +1,29 @@
 'use strict';
 
 angular.module('app.inspector')
-    .directive('graph', function() {
+    .directive('graph', function($timeout, GraphBuilder) {
         return {
             restrict: 'E',
+            scope: {
+                inspection: '='
+            },
             link: function(scope, element) {
-                function buildGraph() {
+                var graph = null;
+
+                scope.$watch('inspection', function(inspection) {
+                    console.log('Got inspection', inspection);
+                    if (undefined === inspection) {
+                        $(element).empty();
+                    } else {
+                        $timeout(function() {
+                            buildGraph(inspection);
+                        }, 100);
+                    }
+                });
+
+                function buildGraph(inspection) {
+                    var elements = GraphBuilder.fromInspection(inspection);
+
                     $(element).cytoscape({
                         style: cytoscape.stylesheet()
                             .selector('node')
@@ -49,18 +67,7 @@ angular.module('app.inspector')
                                 'text-opacity': 0
                             }),
 
-                        elements: {
-                            nodes: [
-                                {data: {id: 'Unknown', name: 'Unknown', faveColor: '#86B342'}},
-                                {data: {id: 'SymfonyExample', name: 'SymfonyExample', faveColor: '#86B342'}},
-                                {data: {id: 'github.com', name: 'github.com', faveColor: '#86B342'}}
-                            ],
-
-                            edges: [
-                                {data: {id: 'ae', weight: 80, source: 'Unknown', target: 'SymfonyExample'}},
-                                {data: {id: 'ab', weight: 20, source: 'SymfonyExample', target: 'github.com'}}
-                            ]
-                        },
+                        elements: elements,
 
                         layout: {
                             name: 'circle',
@@ -68,15 +75,92 @@ angular.module('app.inspector')
                         },
 
                         ready: function () {
-                            var cy = this;
-                            console.log('ready', cy);
+                            this.resize();
+
+                            graph = this;
                         }
                     });
                 }
 
                 scope.$on('inspectorResized', function() {
-                    buildGraph();
+                    if (graph) {
+                        graph.resize();
+                    }
                 });
             }
         };
+    })
+    .service('GraphBuilder', function() {
+        var GraphObject = function(attributes) {
+            this.getIdentifier = function() {
+                return attributes.id;
+            };
+
+            this.toArray = function() {
+                return attributes;
+            };
+        };
+
+        GraphObject.fromPeer = function(attributes) {
+            attributes.id = attributes.name = attributes.service;
+            attributes.faveColor = attributes.virtual ? '#00BCD4' : '#8BC34A';
+
+            return new this(attributes);
+        };
+
+        var GraphObjectCollection = function() {
+            var objects = [];
+
+            this.add = function(object) {
+                objects.push(object);
+            };
+
+            this.addIfNotExists = function(object) {
+                if (!this.exists(object)) {
+                    this.add(object);
+                }
+            };
+
+            this.exists = function(object) {
+                for (var i = 0; i < objects.length; i++) {
+                    if (objects[i].getIdentifier() == object.getIdentifier()) {
+                        return true;
+                    }
+                }
+
+                return false;
+            };
+
+            this.toDataArray = function() {
+                return objects.map(function(object) {
+                    return {data: object.toArray()};
+                });
+            };
+        };
+
+        this.fromInspection = function(inspection) {
+            var nodes = new GraphObjectCollection(),
+                edges = new GraphObjectCollection();
+
+            for (var i = 0; i < inspection.profiles.length; i++) {
+                var profile = inspection.profiles[i],
+                    sender = GraphObject.fromPeer(profile.sender),
+                    recipient = GraphObject.fromPeer(profile.recipient);
+
+                nodes.addIfNotExists(sender);
+                nodes.addIfNotExists(recipient);
+                edges.add(new GraphObject({
+                    id: profile.identifier,
+                    source: sender.getIdentifier(),
+                    target: recipient.getIdentifier(),
+                    weight: 50
+                }));
+            }
+
+            return {
+                nodes: nodes.toDataArray(),
+                edges: edges.toDataArray()
+            };
+        };
     });
+

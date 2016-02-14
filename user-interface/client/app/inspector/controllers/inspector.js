@@ -1,7 +1,7 @@
 angular.module('app.inspector')
-    .controller('InspectorController', function($scope, $rootScope, $timeout) {
+    .controller('InspectorController', function($scope, $rootScope, $timeout, Inspector) {
         $scope.display = {
-            missingIdentifier: true,
+            message: 'Type a message identifier first.',
             graph: true,
             table: true
         };
@@ -11,14 +11,18 @@ angular.module('app.inspector')
         };
 
         $scope.inspect = function(query) {
-            $scope.display.missingIdentifier = false;
+            $scope.display.message = false;
             $scope.display.loading = true;
             $scope.display.inspector = false;
 
-            $timeout(function() {
-                $scope.display.loading = false;
+            Inspector.inspect(query).then(function(inspection) {
+                $scope.inspection = inspection;
                 $scope.display.inspector = true;
-            }, 1000);
+            }, function(error) {
+                $scope.display.message = error.message;
+            })['finally'](function() {
+                $scope.display.loading = false;
+            });
         };
 
         $scope.$on("angular-resizable.resizeEnd", function (event, args) {

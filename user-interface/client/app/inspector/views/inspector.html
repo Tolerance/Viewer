@@ -1,7 +1,7 @@
 <md-toolbar>
     <div class="md-toolbar-tools inspector-toolbar">
         <md-input-container>
-            <input ng-model="query.request_id" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
+            <input ng-model="query.message_identifier" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
         </md-input-container>
         <md-button class="md-raised" ng-click="inspect(query)" ng-disable="!query.request_id">Inspect</md-button>
 
@@ -19,15 +19,13 @@
 </md-toolbar>
 
 <div class="inspector-container">
-    <div class="placeholder" ng-show="display.missingIdentifier">
-        Type a message identifier first.
-    </div>
+    <div class="placeholder" ng-show="display.message">{{ display.message }}</div>
     <div class="placeholder" ng-show="display.loading">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <div class="inspector" ng-show="display.inspector">
         <div class="graph" resizable r-directions="['right']" r-flex="true" ng-show="display.graph">
-            <graph></graph>
+            <graph inspection="inspection"></graph>
         </div>
         <div class="list" ng-show="display.table">
             <table class="table">
@@ -35,18 +33,18 @@
                     <tr>
                         <th>DateTime</th>
                         <th>Sender</th>
-                        <th>Receiver</th>
+                        <th>Recipient</th>
                         <th>Type</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10/01/2016 17:44:14</td>
-                        <td>Service 1</td>
-                        <td>github.com</td>
-                        <td>HTTP</td>
-                        <td>200</td>
+                    <tr ng-repeat="profile in inspection.profiles">
+                        <td>{{ profile.timing.start }}</td>
+                        <td>{{ profile.sender.service }}</td>
+                        <td>{{ profile.recipient.service }}</td>
+                        <td>{{ profile.message.type }}</td>
+                        <td>{{ profile.message.status_code }}</td>
                     </tr>
                 </tbody>
             </table>

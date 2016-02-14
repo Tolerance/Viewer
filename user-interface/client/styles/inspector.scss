@@ -38,6 +38,12 @@
     }
 }
 
+body.nav-collapsed-min {
+    div.inspector-container {
+        left: 60px;
+    }
+}
+
 div.inspector-container {
     position: fixed;
     top: 128px;
