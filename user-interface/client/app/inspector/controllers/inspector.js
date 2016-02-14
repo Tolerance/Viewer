@@ -25,6 +25,13 @@ angular.module('app.inspector')
             });
         };
 
+        $scope.openProfileDetails = function(profile) {
+            $scope.profile = profile;
+        };
+        $scope.closeProfileDetails = function() {
+            $scope.profile = undefined;
+        };
+
         $scope.$on("angular-resizable.resizeEnd", function (event, args) {
             $rootScope.$broadcast('inspectorResized');
         });

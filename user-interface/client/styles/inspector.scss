@@ -85,6 +85,7 @@ div.inspector-container {
 
             &.list {
                 overflow: auto;
+                background: #fff;
             }
 
             &.graph {
@@ -95,5 +96,60 @@ div.inspector-container {
                 }
             }
         }
+    }
+}
+
+.message-details {
+    position: fixed;
+    top: 64px;
+    z-index: 800;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+
+    header {
+        height: 64px;
+        border-bottom: 1px solid #E2E2E2;
+
+        .close-icon {
+            float: right;
+            font-size: 2em;
+            margin-top: 12px;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            padding-top: 2px;
+            background: #fff;
+            border-radius: 100%;
+
+            &:hover {
+                background: #333;
+                color: #fff;
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin: 0;
+            font-size: 2em;
+            padding: 15px;
+
+            small {
+                color: #000;
+            }
+        }
+    }
+
+    .details {
+        div {
+            padding: 10px;
+        }
+    }
+
+    md-tabs {
+        background: #fff;
+        border-top: 1px solid #E2E2E2;
     }
 }
