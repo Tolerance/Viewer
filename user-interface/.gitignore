@@ -1,4 +1,5 @@
 /node_modules
 /client/bower_components
-
-.tmp
+/dist
+/.tmp
+client/app/config.js

@@ -36,7 +36,8 @@ class Neo4jInspector implements Inspector
             'OPTIONAL MATCH (message)-[:PARENT_MESSAGE*1]->(directParent:Message) '.
             'WITH message, count(p) AS c, collect(p) AS peers, sender, collect(received) as receivedCollection, sent, directParent '.
             'RETURN message, sender, head(receivedCollection) AS received, sent, directParent AS parent, '.
-            'CASE c WHEN 1 THEN peers[0] ELSE head(filter(x in peers where x.virtual IS NULL)) END AS receiver'
+            'CASE c WHEN 1 THEN peers[0] ELSE head(filter(x in peers where x.virtual IS NULL)) END AS receiver '.
+            'ORDER BY received.start ASC'
         ;
 
         $response = $this->getResponse(

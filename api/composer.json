@@ -43,6 +43,9 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "update-parameters": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
         ]
     },
     "extra": {
@@ -53,7 +56,13 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "neo4j_host": "NEO4J_HOST",
+                "neo4j_port": "NEO4J_PORT",
+                "neo4j_username": "NEO4J_USERNAME",
+                "neo4j_password": "NEO4J_PASSWORD"
+            }
         },
         "branch-alias": {
             "dev-master": "3.0-dev"

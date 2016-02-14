@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var args = require('yargs').argv;
 var browserSync = require('browser-sync');
+var ngConstant = require('gulp-ng-constant');
 var config = require('./gulp.config')();
 var del = require('del');
 var $ = require('gulp-load-plugins')({lazy: true});
@@ -144,8 +145,18 @@ gulp.task('optimize', ['inject', 'sass-min'], function() {
         .pipe(gulp.dest( config.dist ));
 });
 
+gulp.task('config', function () {
+    gulp.src('client/app/config.json')
+        .pipe(ngConstant({
+            name: 'app.config',
+            constants: {
+                API_ROOT: process.env.API_ROOT
+            }
+        }))
+        .pipe(gulp.dest('client/app'));
+});
 
-gulp.task('serve', ['inject', 'sass'], function() {
+gulp.task('serve', ['inject', 'sass', 'config'], function() {
     startBrowserSync('serve');
 });
 
@@ -193,7 +204,7 @@ function startBrowserSync(opt) {
     }
 
     var options = {
-        port: 3000,
+        port: process.env.UI_PORT || 3000,
         ghostMode: {
             clicks: false,
             location: false,

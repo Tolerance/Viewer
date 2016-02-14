@@ -4,7 +4,8 @@
     angular.module('app', [
         // Core modules
         'app.core',
-        'app.inspector'
+        'app.inspector',
+        'app.config'
     ]);
 
 })();

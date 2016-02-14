@@ -1,0 +1,15 @@
+api:
+    build: api/
+    volumes:
+        - ./api:/app
+    environment:
+        NEO4J_HOST: neo4j.docker
+        NEO4J_PASSWORD: samuel
+
+ui:
+    build: user-interface/
+    volumes:
+        - ./user-interface:/app
+    environment:
+        API_ROOT: http://viewer_api.docker/app_dev.php
+        UI_PORT: 80

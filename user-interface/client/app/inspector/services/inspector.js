@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.inspector')
-    .service('Inspector', function($http, $q) {
+    .service('Inspector', function($http, $q, API_ROOT) {
         var decoratesInspection = function(inspection) {
             inspection.getProfile = function(identifier) {
                 for (var i = 0; i < inspection.profiles.length; i++) {
@@ -19,7 +19,7 @@ angular.module('app.inspector')
         };
 
         this.inspect = function(query) {
-            return $http.get('http://viewer_api.docker/app_dev.php/inspection', {
+            return $http.get(API_ROOT+'/inspection', {
                 params: query
             }).then(function(httpResponse) {
                 var inspection = httpResponse.data;

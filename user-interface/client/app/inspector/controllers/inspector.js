@@ -31,6 +31,10 @@ angular.module('app.inspector')
         var refreshScope = function() {
             $scope.query = $state.params;
 
+            if (!$scope.query.message_identifier) {
+                return;
+            }
+
             if (!$scope.inspection) {
                 inspect($state.params);
             }
