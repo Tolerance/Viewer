@@ -4,9 +4,8 @@
     angular.module('app')
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider
-                .when('/', '/dashboard')
-                .otherwise('/dashboard');
-
+                .when('/', '/inspector')
+                .otherwise('/inspector');
 
             $stateProvider
                 .state('layout', {
@@ -15,15 +14,6 @@
                         header: {
                             templateUrl: 'app/layout/views/header.html',
                             controller: 'HeaderController'
-                        }
-                    }
-                })
-                .state('dashboard', {
-                    parent: 'layout',
-                    url: '/dashboard',
-                    views: {
-                        '@': {
-                            templateUrl: 'app/dashboard/dashboard.html'
                         }
                     }
                 })
