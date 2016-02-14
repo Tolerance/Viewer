@@ -19,7 +19,18 @@
                 })
                 .state('inspector', {
                     parent: 'layout',
-                    url: '/inspector',
+                    url: '/inspector?message_identifier&profile',
+                    reloadOnSearch: false,
+                    params: {
+                        message_identifier: {
+                            value: '',
+                            squash: true
+                        },
+                        profile: {
+                            value: '',
+                            squash: true
+                        }
+                    },
                     views: {
                         '@': {
                             controller: 'InspectorController',

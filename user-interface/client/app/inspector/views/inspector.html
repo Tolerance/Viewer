@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="profile in inspection.profiles" ng-click="openProfileDetails(profile)">
+                    <tr ng-repeat="profile in inspection.profiles" ng-click="openProfileDetails(profile.identifier)">
                         <td>{{ profile.timing.start | date:'dd/MM/yyyy HH:mm:ss.sss' }}</td>
                         <td>{{ profile.sender.service }}</td>
                         <td>{{ profile.recipient.service }}</td>
@@ -64,7 +64,7 @@
             <div class="col-sm-6"><strong>Type</strong></div>
             <div class="col-sm-6">{{ profile.message.type }}</div>
             <div class="col-sm-6"><strong>Timing</strong></div>
-            <div class="col-sm-6">{{ profile.timing.duration }} ms</div>
+            <div class="col-sm-6">{{ profile.timing.duration | number:0 }} ms</div>
         </div>
         <div class="col-md-4">
             <div class="col-sm-6"><strong>Sender</strong></div>
@@ -75,20 +75,48 @@
         <div class="col-md-4">
             <div class="col-sm-6"><strong>Parent</strong></div>
             <div class="col-sm-6">
-                <a href="#" ng-show="profile.parent">{{ profile.parent.identifier }}</a>
+                <a ng-click="openProfileDetails(profile.parent.identifier)" ng-show="profile.parent" href="javascript:;">{{ profile.parent.identifier }}</a>
                 <em ng-hide="profile.parent">None</em>
             </div>
         </div>
     </aside>
     <md-tabs md-border-bottom md-autoselect>
         <md-tab label="HTTP">
-            <p>Details of peers</p>
+            <div class="request-overview">
+                <span class="method">{{ profile.message.method }}</span>
+                <span class="path">{{ profile.message.path }}</span>
+            </div>
         </md-tab>
         <md-tab label="Peers">
-            <p>Details of peers</p>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sender</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" ng-repeat="(key, value) in profile.sender.details">
+                            <div class="col-sm-6"><strong>{{ key }}</strong></div>
+                            <div class="col-sm-6">{{ value }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Recipient</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" ng-repeat="(key, value) in profile.recipient.details">
+                            <div class="col-sm-6"><strong>{{ key }}</strong></div>
+                            <div class="col-sm-6">{{ value }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </md-tab>
         <md-tab label="Logs">
-            <p><em>You need to configure the log sources.</em></p>
+            <div class="placeholder"><em>You need to configure the log source.</em></div>
         </md-tab>
     </md-tabs>
 </div>

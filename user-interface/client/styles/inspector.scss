@@ -51,16 +51,6 @@ div.inspector-container {
     right: 0;
     bottom: 0;
 
-    div.placeholder {
-        text-align: center;
-        vertical-align: bottom;
-        margin-top: 100px;
-
-        md-progress-circular {
-            margin: auto;
-        }
-    }
-
     div.inspector {
         flex: 1;
         display: flex;
@@ -96,6 +86,16 @@ div.inspector-container {
                 }
             }
         }
+    }
+}
+
+div.placeholder {
+    text-align: center;
+    vertical-align: bottom;
+    margin-top: 100px;
+
+    md-progress-circular {
+        margin: auto;
     }
 }
 
@@ -151,5 +151,22 @@ div.inspector-container {
     md-tabs {
         background: #fff;
         border-top: 1px solid #E2E2E2;
+    }
+
+
+    md-tab-content {
+        margin-top: 20px;
+    }
+
+    .request-overview {
+        padding: 10px 30px;
+
+        span.method {
+            background: #efefef;
+            padding: 5px;
+        }
+        span.path {
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        }
     }
 }
