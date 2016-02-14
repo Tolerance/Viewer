@@ -3,7 +3,7 @@
         <md-input-container>
             <input ng-model="query.message_identifier" type="text" placeholder="Message identifier" class="md-whiteframe-1dp">
         </md-input-container>
-        <md-button class="md-raised" ng-click="inspect(query)" ng-disable="!query.request_id">Inspect</md-button>
+        <md-button class="md-raised" ng-click="inspect(query)" ng-disable="!query.message_identifier">Inspect</md-button>
 
         <span flex></span>
 
@@ -80,7 +80,7 @@
             </div>
         </div>
     </aside>
-    <md-tabs md-border-bottom md-autoselect>
+    <md-tabs md-border-bottom md-autoselect md-dynamic-height>
         <md-tab label="HTTP">
             <div class="request-overview">
                 <span class="method">{{ profile.message.method }}</span>

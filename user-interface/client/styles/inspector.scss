@@ -42,6 +42,9 @@ body.nav-collapsed-min {
     div.inspector-container {
         left: 60px;
     }
+    .message-details {
+        left: 60px;
+    }
 }
 
 div.inspector-container {
@@ -106,7 +109,7 @@ div.placeholder {
     bottom: 0;
     left: 220px;
     right: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
 
     header {
         height: 64px;
@@ -149,10 +152,12 @@ div.placeholder {
     }
 
     md-tabs {
-        background: #fff;
         border-top: 1px solid #E2E2E2;
     }
 
+    md-tabs-wrapper {
+        background: #fff;
+    }
 
     md-tab-content {
         margin-top: 20px;

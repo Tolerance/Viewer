@@ -29,6 +29,8 @@ angular.module('app.inspector')
         };
 
         var refreshScope = function() {
+            $scope.query = $state.params;
+
             if (!$scope.inspection) {
                 inspect($state.params);
             }
