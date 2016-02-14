@@ -4,12 +4,13 @@ This AngularJS application exposes the Viewer front-end, that displays Tolerance
 
 ## Docker
 
-You can run the API using the `tolerance/viewer-api` Docker Image.
+You can run the API using the [`sroze/tolerance-viewer-ui` Docker image](https://hub.docker.com/r/sroze/tolerance-viewer-ui/).
+
 ```
 docker run -d \
     -e UI_PORT=80 \
     -e API_ROOT=http://viewer_api.docker/app_dev.php \
-    tolerance/viewer-ui
+    sroze/tolerance-viewer-ui
 ```
 
 ## Contributing
