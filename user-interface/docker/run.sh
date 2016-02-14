@@ -6,4 +6,4 @@ set -xe
 gulp config
 
 # Start the gulp server
-gulp serve-dist
+gulp serve

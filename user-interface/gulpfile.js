@@ -161,11 +161,11 @@ gulp.task('serve', ['inject', 'sass', 'config'], function() {
 });
 
 gulp.task('build', ['optimize', 'copy'], function() {
-    startBrowserSync('dist');
-})
 
-gulp.task('serve-dist', function() {
-    gulp.run('build');
+});
+
+gulp.task('serve-dist', ['build'], function() {
+    startBrowserSync('dist');
 })
 
 gulp.task('serve-docs', ['jade-docs'], function() {

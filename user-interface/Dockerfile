@@ -11,6 +11,8 @@ COPY bower.json /app/bower.json
 RUN bower install --allow-root
 
 COPY . /app
-RUN gulp build
+
+ENV UI_PORT 80
+EXPOSE 80
 
 CMD ["/app/docker/run.sh"]
