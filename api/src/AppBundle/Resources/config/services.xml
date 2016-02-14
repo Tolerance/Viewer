@@ -29,7 +29,6 @@
         </service>
         <service id="app.controller.inspect" class="AppBundle\Controller\InspectController">
             <argument type="service" id="app.inspector.neo4j" />
-            <argument type="service" id="jms_serializer" />
         </service>
 
         <service id="app.inspector.enhancer.virtual_peers_to_service"

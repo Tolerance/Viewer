@@ -27,6 +27,34 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+# FOS Rest Configuration
+fos_rest:
+    body_converter:
+        enabled: true
+
+    view:
+        view_response_listener: force
+
+    format_listener:
+        rules:
+            - { path: '^/_profiler', priorities: ['html'] }
+            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
+
+sensio_framework_extra:
+    view:    { annotations: false }
+    request: { converters: true }
+
+# Nelmio CORS Configuration
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: '*'
+        allow_headers: ['accept', 'content-type', 'x-http-method-override']
+        allow_methods: ['POST', 'PUT', 'PATCH', 'GET', 'DELETE']
+        max_age: 3600
+    paths:
+        '^/': ~
+
 # JMS Serializer configuration
 jms_serializer:
     metadata:

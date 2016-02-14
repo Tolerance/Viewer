@@ -21,7 +21,8 @@
         "graphaware/neo4j-php-client": "^3.3",
         "friendsofsymfony/rest-bundle": "^1.7",
         "sroze/tolerance": "dev-message-profile",
-        "jms/serializer-bundle": "^1.1"
+        "jms/serializer-bundle": "^1.1",
+        "nelmio/cors-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

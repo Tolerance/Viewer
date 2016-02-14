@@ -30,11 +30,12 @@ class Neo4jInspector implements Inspector
     public function inspect(InspectionRequest $request): Inspection
     {
         $query =
-            'MATCH (parent:Message {identifier: {messageIdentifier}})-[:PARENT_MESSAGE*0..]-(message:Message)<-[received:RECEIVED_MESSAGE]-(p:Peer) '.
+            'MATCH (parent:Message {identifier: {messageIdentifier}})-[:PARENT_MESSAGE*0..]-(message:Message) '.
+            'OPTIONAL MATCH (message)<-[received:RECEIVED_MESSAGE]-(p:Peer) '.
             'OPTIONAL MATCH (message)-[sent:SENT_MESSAGE]-(sender:Peer) '.
             'OPTIONAL MATCH (message)-[:PARENT_MESSAGE*1]->(directParent:Message) '.
-            'WITH message, count(p) AS c, collect(p) AS peers, sender, received, sent, directParent '.
-            'RETURN message, sender, received, sent, directParent AS parent, '.
+            'WITH message, count(p) AS c, collect(p) AS peers, sender, collect(received) as receivedCollection, sent, directParent '.
+            'RETURN message, sender, head(receivedCollection) AS received, sent, directParent AS parent, '.
             'CASE c WHEN 1 THEN peers[0] ELSE head(filter(x in peers where x.virtual IS NULL)) END AS receiver'
         ;
 

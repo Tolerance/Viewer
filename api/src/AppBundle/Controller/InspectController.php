@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Tolerance\Viewer\InspectionRequest;
 use Tolerance\Viewer\Inspector;
+use FOS\RestBundle\Controller\Annotations\View;
 
 /**
  * @Route(service="app.controller.inspect")
@@ -22,34 +23,20 @@ class InspectController extends Controller
     private $inspector;
 
     /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
      * @param Inspector $inspector
-     * @param SerializerInterface $serializer
      */
-    public function __construct(Inspector $inspector, SerializerInterface $serializer)
+    public function __construct(Inspector $inspector)
     {
         $this->inspector = $inspector;
-        $this->serializer = $serializer;
     }
 
     /**
      * @Route("/inspection", methods={"GET"})
      * @ParamConverter("request", converter="inspection_request")
+     * @View
      */
     public function indexAction(InspectionRequest $request)
     {
-        $inspection = $this->inspector->inspect($request);
-
-        return new Response(
-            $this->serializer->serialize($inspection, 'json'),
-            200,
-            [
-                'Content-Type' => 'application/json',
-            ]
-        );
+        return $this->inspector->inspect($request);
     }
 }

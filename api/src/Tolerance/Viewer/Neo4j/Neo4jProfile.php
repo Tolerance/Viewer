@@ -63,12 +63,12 @@ class Neo4jProfile extends SimpleMessageProfile
         $start = [];
         $end = [];
 
-        if (array_key_exists('received', $normalized)) {
+        if (isset($normalized['received'])) {
             $start[] = $normalized['received']['start'];
             $end[] = $normalized['received']['end'];
         }
 
-        if (array_key_exists('sent', $normalized)) {
+        if (isset($normalized['sent'])) {
             $start[] = $normalized['sent']['start'];
             $end[] = $normalized['sent']['end'];
         }

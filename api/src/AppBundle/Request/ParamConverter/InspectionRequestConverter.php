@@ -16,8 +16,8 @@ class InspectionRequestConverter implements ParamConverterInterface
      */
     public function apply(Request $request, ParamConverter $configuration)
     {
-        if (null === ($rawMessageIdentifier = $request->query->get('messageIdentifier'))) {
-            throw new BadRequestHttpException('The `messageIdentifier` parameter is required');
+        if (null === ($rawMessageIdentifier = $request->query->get('message_identifier'))) {
+            throw new BadRequestHttpException('The `message_identifier` parameter is required');
         }
 
         $messageIdentifier = StringMessageIdentifier::fromString($rawMessageIdentifier);
