@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="app.neo4j.client_builder" class="Neoxygen\NeoClient\ClientBuilder">
+            <call method="addConnection">
+                <argument>default</argument>
+                <argument>http</argument>
+                <argument>%neo4j_host%</argument>
+                <argument>%neo4j_port%</argument>
+                <argument>true</argument>
+                <argument>%neo4j_username%</argument>
+                <argument>%neo4j_password%</argument>
+            </call>
+            <factory class="Neoxygen\NeoClient\ClientBuilder" method="create"/>
+        </service>
+        <service id="app.neo4j.client" class="Neoxygen\NeoClient\Client">
+            <factory service="app.neo4j.client_builder" method="build"/>
+        </service>
+
+        <service id="app.request.inspection_request" class="AppBundle\Request\ParamConverter\InspectionRequestConverter">
+            <tag name="request.param_converter" converter="inspection_request" />
+        </service>
+        <service id="app.inspector.neo4j" class="Tolerance\Viewer\Neo4j\Neo4jInspector">
+            <argument type="service" id="app.neo4j.client" />
+        </service>
+        <service id="app.controller.inspect" class="AppBundle\Controller\InspectController">
+            <argument type="service" id="app.inspector.neo4j" />
+            <argument type="service" id="jms_serializer" />
+        </service>
+
+        <service id="app.inspector.enhancer.virtual_peers_to_service"
+                 class="Tolerance\Viewer\Enhancer\VirtualPeersToService"
+                 decorates="app.inspector.neo4j">
+            <argument type="service" id="app.inspector.enhancer.virtual_peers_to_service.inner" />
+        </service>
+    </services>
+</container>

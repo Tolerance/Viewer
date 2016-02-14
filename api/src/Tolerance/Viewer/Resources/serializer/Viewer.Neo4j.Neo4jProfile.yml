@@ -1,0 +1,4 @@
+Tolerance\Viewer\Neo4j\Neo4jProfile:
+    properties:
+        details:
+            type: array

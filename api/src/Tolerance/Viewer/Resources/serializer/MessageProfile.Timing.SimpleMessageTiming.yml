@@ -1,0 +1,6 @@
+Tolerance\MessageProfile\Timing\SimpleMessageTiming:
+    properties:
+        start:
+            type: DateTime<'Y-m-d\TH:i:s.uO'>
+        end:
+            type: DateTime<'Y-m-d\TH:i:s.uO'>

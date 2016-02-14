@@ -1,0 +1,4 @@
+Tolerance\Viewer\Inspection:
+    properties:
+        profiles:
+            expose: true

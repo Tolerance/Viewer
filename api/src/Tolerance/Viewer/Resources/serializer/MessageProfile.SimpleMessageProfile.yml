@@ -1,0 +1,6 @@
+Tolerance\MessageProfile\SimpleMessageProfile:
+    properties:
+        identifier:
+            type: string
+        parentIdentifier:
+            type: string

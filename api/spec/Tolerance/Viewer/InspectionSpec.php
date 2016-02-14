@@ -4,11 +4,17 @@ namespace spec\Tolerance\Viewer;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Tolerance\MessageProfile\MessageProfile;
 
 class InspectionSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    function let(MessageProfile $profile1)
     {
-        $this->shouldHaveType('Tolerance\Viewer\Inspection');
+        $this->beConstructedWith([$profile1]);
+    }
+
+    function it_exposes_a_list_of_message_profiles(MessageProfile $profile1)
+    {
+        $this->getMessageProfiles()->shouldReturn([$profile1]);
     }
 }
