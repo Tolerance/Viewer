@@ -14,11 +14,12 @@ This application is composed of these two components:
 You can simply use the built Docker images for the API and the UI, checkout their respective documentations.
 
 - [API Docker image](api/README.md#docker)
-- [User-Interface Docker image](user-inteface/README.md#docker)
+- [User-Interface Docker image](user-interface/README.md#docker)
 
 ## Contributing
 
 If you want to run the viewer in a developer mode:
+
 1. Checkout this repository
 2. Install the application (see their respective `README.md` file)
 3. Run the 2 containers with Docker. If you've installed Docker using [dock-cli](https://inviqa.com/inviqa/dock-cli)
