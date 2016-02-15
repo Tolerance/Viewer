@@ -25,3 +25,8 @@ If you want to run the viewer in a developer mode:
 3. Run the 2 containers with Docker. If you've installed Docker using [dock-cli](https://inviqa.com/inviqa/dock-cli)
    you can simply run `dock-cli start` and you'll see the DNS addresses of the running containers. Else, simply use
    docker-compose.
+
+## License
+
+This project is under the [MIT license](LICENSE).
+
