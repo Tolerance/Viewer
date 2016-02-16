@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use JMS\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +14,7 @@ use FOS\RestBundle\Controller\Annotations\View;
 /**
  * @Route(service="app.controller.inspect")
  */
-class InspectController extends Controller
+class InspectController
 {
     /**
      * @var Inspector
